@@ -18,6 +18,11 @@ function Todos(){
     }].concat(todos))
     setInput('')
   }
+
+  const deleteItem = (item) => {   
+    setTodos( todos.filter( (curItem) => curItem.key !== item.key) )
+  }
+
   const filterBy = useMemo(
     () => e => {
       e.preventDefault();
@@ -39,13 +44,13 @@ function Todos(){
       <div>
         <ul className="todos">
           {
-          todos.filter( todo => {
-            return sortBy !== 'all' 
-            ? sortBy === 'complete' ? todo.complete === true : todo.complete === false
-            : todo
-          }).map( todo => {
-            return <TodoItem key={todo.key} item={todo}/>
-          })
+            todos.filter( todo => {
+              return sortBy !== 'all' 
+              ? sortBy === 'complete' ? todo.complete === true : todo.complete === false
+              : todo
+            }).map( todo => {
+              return <TodoItem key={todo.key} item={todo} handleDelete={deleteItem}/>
+            })
           }
         </ul>
       </div>

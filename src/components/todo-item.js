@@ -1,20 +1,15 @@
 import React from 'react';
 
-function TodoItem({item}){
+function TodoItem({item, handleDelete}){
   return(
-    <li className={item.complete ? "complete" : "active"}>
-      {item.todo}
+    <li>
+      <span className="bin" onClick={() => handleDelete(item)}>🗑</span>
+      <span className={item.complete ? "complete" : "active"}>{item.todo}</span>
       <div className="box">
         <span>{item.complete ? "✓" : ""}</span>
       </div>
     </li>
   )
 }
-/*
-      {item.todo}
-      {
-        item.complete 
-        ? <div className="box"><span>✓</span></div> 
-        : <div className="box"><span></span></div> 
-      } */
+
 export default TodoItem

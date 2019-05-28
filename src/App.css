@@ -47,8 +47,8 @@
 
 .todos li {
   display: grid;
-  grid-template-columns: 2fr 1fr;
-  grid-template-areas: "task box";
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-areas: "bin task box";
   grid-area: task;
   padding: 0.5em;
 }
@@ -71,15 +71,19 @@
   cursor: pointer;
 }
 
+.box span {
+  font-size: 1.5em;
+  position: absolute;
+  margin-top: -0.5em;
+  margin-left: -0.2em;
+}
+
 .complete {
   text-decoration: line-through;
 }
 
-.box span {
+.bin {
   font-size: 1.5em;
-  display: inline-block;
-  /*text-decoration: none; display inline block removes strike through but text decoration does not?*/
-  position: absolute;
-  margin-top: -0.5em;
-  margin-left: -0.2em;
+  grid-area: bin;
+  cursor: pointer;
 }
