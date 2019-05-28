@@ -1,25 +1,30 @@
-import React, { useState } from 'react';
-
+import React, { useState, useMemo } from 'react';
+import TodoItem from './todo-item'
 function Todos(){
   const [input, setInput] = useState('')
   const [sortBy, setSortBy] = useState('all')
   const [todos, setTodos] = useState([
-    {todo: "to market", complete: false},
-    {todo: "to get there", complete: false},
-    {todo: "and we done", complete: true}
+    {key: 1, todo: "to market", complete: false},
+    {key: 2, todo: "to get there", complete: false},
+    {key: 3, todo: "and we done", complete: true}
   ])
 
   const addItem = e => {
     e.preventDefault();
     setTodos([{
+      key: new Date().getTime(),
       todo: input,
       complete: false
     }].concat(todos))
+    setInput('')
   }
-  const filterBy = e => {
-    e.preventDefault();
-    setSortBy(e.target.name)
-  }
+  const filterBy = useMemo(
+    () => e => {
+      e.preventDefault();
+      setSortBy(e.target.name)
+    }, [setSortBy]
+  )
+
   return(
     <div>
       <form onSubmit={addItem}>
@@ -32,14 +37,14 @@ function Todos(){
         <li><button name="all" type="button" className={sortBy === 'all' ? 'selected' : ''} onClick={filterBy}>All</button></li>
       </ul>
       <div>
-        <ul>
+        <ul className="todos">
           {
-          todos.filter( item => {
+          todos.filter( todo => {
             return sortBy !== 'all' 
-            ? sortBy === 'complete' ? item.complete === true : item.complete === false
-            : item
-          }).map( item => {
-            return <li key={item.todo}>{item.todo} Complete: {item.complete ? "Complete" : "Active"}</li>
+            ? sortBy === 'complete' ? todo.complete === true : todo.complete === false
+            : todo
+          }).map( todo => {
+            return <TodoItem key={todo.key} item={todo}/>
           })
           }
         </ul>

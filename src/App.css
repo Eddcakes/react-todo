@@ -1,19 +1,19 @@
-.App {
-  text-align: center;
-}
-.filter{
+.filter {
   list-style: none;
   padding-left: 0;
 }
-.filter li{
+
+.filter li {
   display: inline;
   padding: 1em;
 }
+
 /*fix Safari accessibility issue from list-style none*/
 .filter li::before {
   content: "\200B";
 }
-.filter button{
+
+.filter button {
   all: unset;
   cursor: pointer;
   border: 2px solid transparent;
@@ -29,9 +29,57 @@
 	cursor: pointer;
   outline: inherit;
 */
-.filter button.selected, .filter button:hover{
+
+.filter button.selected, .filter button:hover {
   border-color: rgba(152, 251, 152, 0.4);
 }
-.filter button.selected{
+
+.filter button.selected {
   border-color: rgb(152, 251, 152);
+}
+
+.todos {
+  list-style: none;
+  padding-left: 0;
+  padding-left: 5em;
+  padding-right: 5em;
+}
+
+.todos li {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-areas: "task box";
+  grid-area: task;
+  padding: 0.5em;
+}
+
+.todos li:hover {
+  background-color: aliceblue;
+}
+
+.box {
+  height: 1em;
+  width: 1em;
+  border: 1px #AAA solid;
+  grid-area: box;
+  justify-self: center;
+  align-self: center;
+}
+
+.box:hover {
+  background-color: yellow;
+  cursor: pointer;
+}
+
+.complete {
+  text-decoration: line-through;
+}
+
+.box span {
+  font-size: 1.5em;
+  display: inline-block;
+  /*text-decoration: none; display inline block removes strike through but text decoration does not?*/
+  position: absolute;
+  margin-top: -0.5em;
+  margin-left: -0.2em;
 }
