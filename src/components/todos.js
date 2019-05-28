@@ -20,9 +20,19 @@ function Todos(){
   }
 
   const deleteItem = (item) => {   
-    setTodos( todos.filter( (curItem) => curItem.key !== item.key) )
+    setTodos( todos.filter((curItem) => curItem.key !== item.key) )
   }
-
+  
+  const completeItem = (item) => {
+    setTodos(
+      todos.map( (todo) => {
+        if(todo.key === item.key){
+          todo.complete = !todo.complete
+        }
+        return todo
+      })
+    )
+  }
   const filterBy = useMemo(
     () => e => {
       e.preventDefault();
@@ -49,7 +59,7 @@ function Todos(){
               ? sortBy === 'complete' ? todo.complete === true : todo.complete === false
               : todo
             }).map( todo => {
-              return <TodoItem key={todo.key} item={todo} handleDelete={deleteItem}/>
+              return <TodoItem key={todo.key} item={todo} handleDelete={deleteItem} handleComplete={completeItem}/>
             })
           }
         </ul>

@@ -76,6 +76,7 @@
   position: absolute;
   margin-top: -0.5em;
   margin-left: -0.2em;
+  user-select: none;
 }
 
 .complete {
@@ -86,4 +87,8 @@
   font-size: 1.5em;
   grid-area: bin;
   cursor: pointer;
+  user-select: none;
+  width: 2em;
+  justify-self: center;
+  align-self: center;
 }
