@@ -5,48 +5,51 @@ function Todos(){
   const [searchInput, setSearchInput] = useState('')
   const [sortBy, setSortBy] = useState('all')
   const [todos, setTodos] = useState([
-    {key: 1, todo: "to market", complete: false},
+    {key: 1, todo: "To market", complete: false},
     {key: 2, todo: "to get there", complete: false},
-    {key: 3, todo: "and we done", complete: true}
+    {key: 3, todo: "get on the tree to jumpe over the hill", complete: false},
+    {key: 4, todo: "and we done", complete: true}
   ])
-
+  const [allTodos] = useState(todos)
   const addItem = e => {
     e.preventDefault();
-    setTodos([{
+    if(input.trim().length > 0){
+      setTodos([{
       key: new Date().getTime(),
       todo: input,
       complete: false
-    }].concat(todos))
+      }].concat(todos))
+      setInput('') 
+    }
+    console.log("cannot add blank task")
     setInput('')
-  }
+  }  
+  //maybe this should be the onChange of the input
+  //how to we make sure we only run after stoped typing, 3 seconds or so i guess
+  //would be nice for higher hitRate to be at top of list
   const searchItems = e => {
     e.preventDefault();
-    console.log('search da items')
-    console.log(searchInput)
-    //fuzzy search
-    //trim() the todo
-    //split the searchInput toLowerCase each
     const searchTerms = searchInput.toLowerCase().split(' ')
-    const fuzzy = todos.filter( todo => {
-      searchTerms.forEach( term => {
-        
-      })
-      return todo.todo.trim().toLowerCase()
-      //see which todo was hit most by the search terms to be higher up the list?
-    })
-    console.log({fuzzy, searchTerms})
-    //setTodos()
+    const tempTodos = todos
+    if (searchInput.length > 0){
+      const hitTodos = tempTodos.map( todo => {
+        let hits = 0;
+        searchTerms.forEach( term => {
+          if(todo.todo.includes(term)){
+            hits += 1
+          }
+        })
+        todo.hitRate = hits
+        return todo
+      }).filter( todo => todo.hitRate > 0)
+      setTodos(hitTodos)
+    }else{
+      setTodos(allTodos)
+    }
   }
-  //maybe this should be the onChange of the input
-  //in this case we need to make it a useEffect/memo hook
-  //how to we make sure we only run after stoped typing, 3 seconds or so i guess
-  const handleChange = e => {
-    //setSearchInput(e.target.value)    
-  }
-
-  const clearSearch = e => {
-    console.log('clear the search')
+  const clearSearch = () => {
     setSearchInput('')
+    setTodos(allTodos)
   }
   const deleteItem = (item) => {   
     setTodos( todos.filter((curItem) => curItem.key !== item.key) )
@@ -67,10 +70,11 @@ function Todos(){
       setSortBy(e.target.name)
     }, [setSortBy]
   )
-
   const filteredTodos = todos.filter( todo => {
     return sortBy !== 'all' 
-    ? sortBy === 'complete' ? todo.complete === true : todo.complete === false
+    ? sortBy === 'complete' 
+      ? todo.complete === true 
+      : todo.complete === false
     : todo
   })
 
@@ -81,8 +85,8 @@ function Todos(){
         <button type="submit">Add</button>
       </form>
       <form role="search" onSubmit={searchItems}>
-        <span className="clear-search" onClick={clearSearch}>✗</span>
         <input type="search" name="q" placeholder="search for items" aria-label="Search through site content" value={searchInput} onChange={e => setSearchInput(e.target.value)}/>
+        <span className="clear-search" onClick={clearSearch}>✗</span>
       </form>
       <ul className="filter">
         <li><button name="active" type="button" className={sortBy === 'active' ? 'selected' : ''} onClick={filterBy}>Active</button></li>
@@ -99,7 +103,6 @@ function Todos(){
               })
             )
             : <li><span className="no-items">No items available</span></li>
- 
           }
         </ul>
       </div>
