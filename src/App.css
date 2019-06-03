@@ -49,12 +49,15 @@
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
   grid-template-areas: "bin task box";
-  grid-area: task;
   padding: 0.5em;
 }
 
 .todos li:hover {
   background-color: aliceblue;
+}
+
+.no-items{
+  grid-area: task;
 }
 
 .box {
@@ -91,4 +94,30 @@
   width: 2em;
   justify-self: center;
   align-self: center;
+}
+
+.clear-search{
+  cursor: pointer;
+  user-select: none;
+  margin-right: 0.5em;
+}
+
+/* remove the browser 'x' to clear search box, chrome/ie */
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+  display: none;
+}
+
+input[type=text]::-ms-clear {
+  display: none;
+  width : 0;
+  height: 0;
+}
+
+input[type=text]::-ms-reveal {
+  display: none;
+  width : 0;
+  height: 0;
 }
