@@ -1,15 +1,11 @@
 import React, { useState, useMemo } from 'react';
 import TodoItem from './todo-item'
-function Todos(){
+
+function Todos({tasks}){
   const [input, setInput] = useState('')
   const [searchInput, setSearchInput] = useState('')
   const [sortBy, setSortBy] = useState('all')
-  const [todos, setTodos] = useState([
-    {key: 1, todo: "To market", complete: false},
-    {key: 2, todo: "to get there", complete: false},
-    {key: 3, todo: "get on the tree to jumpe over the hill", complete: false},
-    {key: 4, todo: "and we done", complete: true}
-  ])
+  const [todos, setTodos] = useState(tasks)
   const [allTodos] = useState(todos)
   const addItem = e => {
     e.preventDefault();
