@@ -1,4 +1,4 @@
-.smol-form {
+.add-form {
   display: grid;
   grid-template-areas: "input btn";
   padding-left: 15em;
@@ -10,6 +10,34 @@
   margin: 0.3em;
   padding: 0.2em;
   grid-area: input;
+}
+
+.search-form {
+  padding-left: 15em;
+  padding-right: 15em;
+}
+
+.search-form input {
+  font-size: 2em;
+  margin: 0.3em;
+  padding: 0.2em;
+  padding-left: 0.4em;
+  padding-right: 1.2em;
+  border-radius: 30px 30px;
+}
+
+.clear-search {
+  margin-left: -2.2em;
+  user-select: none;
+  cursor: pointer;
+  border-radius: 50%;
+  width: 2em;
+  padding: 0.2em;
+  font-size: 1.3em;
+}
+
+.clear-search:hover { 
+  background-color: #d4d4d4;
 }
 
 .btn-style {
