@@ -1,7 +1,7 @@
 import React from 'react';
 
 function TodoItem({item, handleDelete, handleComplete}){
-  return(
+  return (
     <li>
       <span className="bin" onClick={() => handleDelete(item)}>🗑</span>
       <span className={item.complete ? "complete" : "active"}>{item.todo}</span>
