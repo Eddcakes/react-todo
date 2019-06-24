@@ -51,8 +51,10 @@ function Todos(){
     setSearchInput('')
     setTodos(allTodos)
   }
-  const deleteItem = (item) => {   
-    setTodos( todos.filter((curItem) => curItem.key !== item.key) )
+  const deleteItem = (item) => {
+    const confirmDel = window.confirm(`Are you sure you want to delete this item ${item.key}: "${item.todo}"?`)
+    if (confirmDel) setTodos( todos.filter((curItem) => curItem.key !== item.key) )
+    
   }
   const completeItem = (item) => {
     setTodos(
