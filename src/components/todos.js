@@ -5,17 +5,17 @@ function Todos(){
   const [searchInput, setSearchInput] = useState('')
   const [sortBy, setSortBy] = useState('all')
   const [todos, setTodos] = useState([
-    {key: 1, todo: "To market", complete: false},
-    {key: 2, todo: "to get there", complete: false},
-    {key: 3, todo: "get on the tree to jumpe over the hill", complete: false},
-    {key: 4, todo: "and we done", complete: true}
+    {id: 1, todo: "To market", complete: false},
+    {id: 2, todo: "to get there", complete: false},
+    {id: 3, todo: "get on the tree to jumpe over the hill", complete: false},
+    {id: 4, todo: "and we done", complete: true}
   ])
   const [allTodos] = useState(todos)
   const addItem = e => {
     e.preventDefault();
     if(input.trim().length > 0){
       setTodos([{
-      key: new Date().getTime(),
+      id: new Date().getTime(),
       todo: input,
       complete: false
       }].concat(todos))
@@ -52,14 +52,14 @@ function Todos(){
     setTodos(allTodos)
   }
   const deleteItem = (item) => {
-    const confirmDel = window.confirm(`Are you sure you want to delete this item ${item.key}: "${item.todo}"?`)
-    if (confirmDel) setTodos( todos.filter((curItem) => curItem.key !== item.key) )
+    const confirmDel = window.confirm(`Are you sure you want to delete this item ${item.id}: "${item.todo}"?`)
+    if (confirmDel) setTodos( todos.filter((curItem) => curItem.id !== item.id) )
     
   }
   const completeItem = (item) => {
     setTodos(
       todos.map( (todo) => {
-        if(todo.key === item.key){
+        if(todo.id === item.id){
           todo.complete = !todo.complete
         }
         return todo
@@ -101,7 +101,7 @@ function Todos(){
             filteredTodos.length > 0 
             ? (
               filteredTodos.map( todo => {
-                return <TodoItem key={todo.key} item={todo} handleDelete={deleteItem} handleComplete={completeItem}/>
+                return <TodoItem key={todo.id} item={todo} handleDelete={deleteItem} handleComplete={completeItem}/>
               })
             )
             : <li><span className="no-items">No items available</span></li>
