@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
-import Imprint from './components/imprint'
-import Todos from './components/todos'
+import Imprint from './components/imprint';
+import Todos from './components/todos';
 
 /* todo- add state for deciding what tab should be open */
 

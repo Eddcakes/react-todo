@@ -1,5 +1,5 @@
 import React from 'react';
-import list from './list.svg'
+import list from './list.svg';
 
 function Imprint(){
   return(
