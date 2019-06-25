@@ -7,3 +7,5 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - [x] Be able to show all, active and complete tasks
 - [x] Be able to search tasks
 - [ ] Add react spring see what we can do
+
+React spring testing: https://codesandbox.io/s/spring-tests-8jpv9
