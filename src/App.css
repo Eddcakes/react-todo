@@ -17,15 +17,37 @@
   padding-right: 15em;
 }
 
+/* comments are browser defaults */
 .search-form input {
-  font-size: 2em;
-  margin: 0.3em;
-  padding: 0.2em;
-  padding-left: 0.4em;
-  padding-right: 1.2em;
-  border-radius: 30px 30px;
+	padding: 0; /* 1px 0px */
+	background-color: transparent; /* white */
+	cursor: text; /* text */
+	border-width: 1px; /* 2 */
+  border-style: solid; /* inset*/
+  border-radius: 2em;
+	border-color: #a0a0a0; /* initial */
+  font: inherit; /* 400 13.3333px Arial */
+  padding: .5rem 2rem .5rem 1rem;
+  line-height: 1;
 }
 
+.search-form input:focus {
+	outline-style: none; /* -webkit-focus-ring-color auto 1px; */
+	outline-offset: 0; /* -2px */
+  padding: .5em 2em .5em 1em; /* 1px */
+  border-color: #3b99fc; /* or Highlight */
+  box-shadow: 0 0 2px; /* to emulate -webkit-focus-ring-color*/
+}
+
+/* would it better to try use the svg as a psudo element? 
+https://stackoverflow.com/questions/19255296/is-there-a-way-to-use-svg-as-content-in-a-pseudo-element-before-or-after
+*/
+.clear-search img{
+  width: 1em;
+  user-select: none;
+  cursor: pointer;
+}
+/*
 .clear-search {
   margin-left: -2.2em;
   user-select: none;
@@ -35,11 +57,7 @@
   padding: 0.2em;
   font-size: 1.3em;
 }
-
-.clear-search:hover { 
-  background-color: #d4d4d4;
-}
-
+*/
 .btn-style {
   padding: 0;
   border: none;
