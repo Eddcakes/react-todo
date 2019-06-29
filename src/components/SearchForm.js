@@ -1,5 +1,6 @@
 import React from 'react';
-import cross from './cross.svg'
+import cross from './cross.svg';
+import mag from './mag.svg';
 
 function SearchForm({searchItems, searchInput, handleSearchInput, clearSearch}){
   return (
