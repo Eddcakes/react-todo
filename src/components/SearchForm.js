@@ -5,9 +5,21 @@ import mag from './mag.svg';
 function SearchForm({searchItems, searchInput, handleSearchInput, clearSearch}){
   return (
     <form role="search" className="search-form" onSubmit={searchItems}>
-      <input type="search" name="q" autoComplete="off" placeholder="search for items" aria-label="Search through site content" value={searchInput} onChange={handleSearchInput}/>
-      <span className="clear-search" onClick={clearSearch}><img src={cross} alt="logo"/></span>
-      
+      <i className="mag">
+        <img src={mag} alt="Search icon"></img>
+      </i>
+      <input 
+        type="search"
+        name="q"
+        autoComplete="off"
+        placeholder="search for items"
+        aria-label="Search through site content"
+        value={searchInput}
+        onChange={handleSearchInput}
+      />
+      <i className="clear-search" onClick={clearSearch}>
+        <img src={cross} alt="Clear icon"/>
+      </i>
     </form>
   )
 }

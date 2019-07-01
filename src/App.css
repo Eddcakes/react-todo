@@ -15,49 +15,82 @@
 .search-form {
   padding-left: 15em;
   padding-right: 15em;
+  display: inline-flex;
+	height: 2.5em;
+	line-height: 0;
+	align-items: center;
 }
 
 /* comments are browser defaults */
 .search-form input {
 	padding: 0; /* 1px 0px */
 	background-color: transparent; /* white */
-	cursor: text; /* text */
-	border-width: 1px; /* 2 */
-  border-style: solid; /* inset*/
-  border-radius: 2em;
-	border-color: #a0a0a0; /* initial */
-  font: inherit; /* 400 13.3333px Arial */
-  padding: .5rem 2rem .5rem 1rem;
-  line-height: 1;
+	cursor: default; /* text */
+	border-width: 0; /* 2 */
+	border-style: none; /* inset*/
+	border-color: transparent; /* initial */
+	font: inherit; /* 400 13.3333px Arial */
 }
 
 .search-form input:focus {
-	outline-style: none; /* -webkit-focus-ring-color auto 1px; */
+	outline-style: none; /* webkit-focus-ring-color auto 1px; */
 	outline-offset: 0; /* -2px */
-  padding: .5em 2em .5em 1em; /* 1px */
-  border-color: #3b99fc; /* or Highlight */
-  box-shadow: 0 0 2px; /* to emulate -webkit-focus-ring-color*/
+	padding: 0; /* 1px */
+}
+
+.search-form input {
+	cursor: text;
+	border-color: #a0a0a0;
+	border-width: 1px;
+	border-style: solid;
+	border-radius: 2em;
+	padding: .5em 1.7em .5em 1.7em;
+	height: 2.5em;
+	width: 2em; 
+	transition: width 2s ease;
+	align-self: center;
+}
+
+.search-form input:focus {
+	display: inline-block;
+	padding: .5em 1.7em .5em 1.7em;
+	border-color: #3b99fc; /* Highlight */
+	box-shadow: 0 0 2px;
+	width: 20em;
+}
+
+.search-form input:not(:placeholder-shown) {
+  width: 20em;
+}
+
+.search-form input:not(:placeholder-shown) + .clear-search {
+  opacity: 1;
+  z-index: 0;
+}
+
+.mag {
+	width: 1.5em;
+	margin-right: -1.8em;
+	opacity: 1;
 }
 
 /* would it better to try use the svg as a psudo element? 
 https://stackoverflow.com/questions/19255296/is-there-a-way-to-use-svg-as-content-in-a-pseudo-element-before-or-after
 */
-.clear-search img{
+.clear-search {
   width: 1em;
   user-select: none;
   cursor: pointer;
+	margin-left: -1.5em;
+  opacity: 0;
+  z-index: -1;
 }
-/*
-.clear-search {
-  margin-left: -2.2em;
-  user-select: none;
-  cursor: pointer;
-  border-radius: 50%;
-  width: 2em;
-  padding: 0.2em;
-  font-size: 1.3em;
+.search-form input:focus + .clear-search {
+	opacity: 1;
+  transition-delay: 1.5s;
+  z-index: 0;
 }
-*/
+
 .btn-style {
   padding: 0;
   border: none;
@@ -152,7 +185,7 @@ input[type=text]::-ms-reveal {
   background-color: aliceblue;
 }
 
-.no-items{
+.no-items {
   grid-area: task;
 }
 
