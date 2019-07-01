@@ -13,19 +13,25 @@ function Todos(){
     {id: 3, todo: "get on the tree to jumpe over the hill", complete: false},
     {id: 4, todo: "and we done", complete: true}
   ])
-  const [allTodos] = useState(todos)
+  const [allTodos, setAllTodos] = useState(todos)
   const addItem = e => {
     e.preventDefault();
-    if(addInput.trim().length > 0){
+    if (addInput.trim().length > 0){
+      const idDate = new Date().getTime()
       setTodos([{
-      id: new Date().getTime(),
+      id: idDate,
       todo: addInput,
       complete: false
       }].concat(todos))
+      setAllTodos([{
+        id: idDate,
+        todo: addInput,
+        complete: false
+        }].concat(allTodos))
       setAddInput('')
+    }else{
+      console.log("cannot add blank task")
     }
-    console.log("cannot add blank task")
-    setAddInput('')
   }
   const handleAddInput = (input) => setAddInput(input.target.value)
   const handleSearchInput = (input) => setSearchInput(input.target.value)
