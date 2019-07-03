@@ -46,7 +46,7 @@ function Todos(){
       const hitTodos = tempTodos.map( todo => {
         let hits = 0;
         searchTerms.forEach( term => {
-          if(todo.todo.includes(term)){
+          if (todo.todo.toLowerCase().includes(term)){
             hits += 1
           }
         })
